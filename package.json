@@ -19,7 +19,9 @@
     "deploy:goerli": "graph deploy --network goerli --product hosted-service ensdomains/ensgoerli",
     "deploy:sepolia": "graph deploy --network sepolia --studio enssepolia",
     "deploy:holesky": "graph deploy --network holesky --studio ensholesky",
-    "watch-local": "graph deploy graphprotocol/ens --watch --debug --node http://127.0.0.1:8020/ --ipfs http://localhost:5001"
+    "watch-local": "graph deploy graphprotocol/ens --watch --debug --node http://127.0.0.1:8020/ --ipfs http://localhost:5001",
+    "auth:goldsky": "npx goldsky login",
+    "deploy:goldsky-fraxtal": "goldsky subgraph deploy fns-subgraph/0.0.1"
   },
   "devDependencies": {
     "@ensdomains/content-hash": "^2.5.3",

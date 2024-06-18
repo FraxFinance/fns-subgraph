@@ -16,12 +16,13 @@ import {
   Transfer as TransferEvent,
 } from "./types/BaseRegistrar/BaseRegistrar";
 
-import { NameRegistered as ControllerNameRegisteredEventOld } from "./types/EthRegistrarControllerOld/EthRegistrarControllerOld";
+import { NameRegistered as ControllerNameRegisteredEventOld } from "./types/FraxRegistrarController/FraxRegistrarController";
+import { PaymentUpdated as ControllerPaymentUpdated } from "./types/FraxRegistrarController/FraxRegistrarController";
 
 import {
   NameRegistered as ControllerNameRegisteredEvent,
   NameRenewed as ControllerNameRenewedEvent,
-} from "./types/EthRegistrarController/EthRegistrarController";
+} from "./types/FraxRegistrarController/FraxRegistrarController";
 
 // Import entity types generated from the GraphQL schema
 import {
@@ -69,12 +70,6 @@ export function handleNameRegistered(event: NameRegisteredEvent): void {
   registrationEvent.registrant = account.id;
   registrationEvent.expiryDate = event.params.expires;
   registrationEvent.save();
-}
-
-export function handleNameRegisteredByControllerOld(
-  event: ControllerNameRegisteredEventOld
-): void {
-  setNamePreimage(event.params.name, event.params.label, event.params.cost);
 }
 
 export function handleNameRegisteredByController(
@@ -153,4 +148,10 @@ export function handleNameTransferred(event: TransferEvent): void {
   transferEvent.transactionID = event.transaction.hash;
   transferEvent.newOwner = account.id;
   transferEvent.save();
+}
+
+export function handlePaymentUpdatedByController(
+  event: ControllerPaymentUpdated
+): void {
+  // #TODO
 }
